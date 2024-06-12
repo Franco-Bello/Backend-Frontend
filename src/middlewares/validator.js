@@ -9,11 +9,24 @@ export const userValidationRules = () => {
     ];
 };
 
+//Validaciones pra Post
 export const postValidationRules = () => {
     return [
         body('content').notEmpty().withMessage('El contenido es obligatorio')
     ];
 };
+
+//Validaciones pra Login
+export const loginValidationRules = () => {
+    return [
+        body('email')
+            .notEmpty().withMessage('El correo electrónico es obligatorio')
+            .isEmail().withMessage('El correo electrónico no es válido'),
+        body('password')
+            .notEmpty().withMessage('La contraseña es obligatoria'),
+    ];
+};
+
 
 export const validate = (req, res, next) => {
     const errors = validationResult(req);
