@@ -1,5 +1,4 @@
 import { User } from '../models/User.js';
-
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
@@ -26,8 +25,8 @@ export const loginUser = async (req, res) => {
         // Generar el token JWT utilizando la clave secreta de las variables de entorno
         const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        // Enviar el token JWT en la respuesta
-        res.json({ token });
+        // Enviar el token JWT y el userId en la respuesta
+        res.json({ token, userId: user.id });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }

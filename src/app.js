@@ -20,8 +20,15 @@ app.use(helmet());
 // Usa Compression para comprimir las respuestas
 app.use(compression());
 
-// Configurar cors
-app.use(cors());
+// Configuración específica para CORS
+const corsOptions = {
+    origin: 'http://localhost:5173', // Reemplaza con el origen permitido
+    methods: 'GET,POST', // Métodos permitidos
+    allowedHeaders: 'Content-Type,Authorization', // Cabeceras permitidas
+  };
+  
+// Configurar CORS con opciones específicas
+app.use(cors(corsOptions));
 
 // Configurar morgan para registrar las solicitudes HTTP
 app.use(morgan('dev'));
